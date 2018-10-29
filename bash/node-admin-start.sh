@@ -1,4 +1,6 @@
 #!/bin/bash
+#node-admin-start.sh
+# v0.0.4
 
 GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
@@ -7,23 +9,19 @@ NC='\e[0m'
 
 clear
 
-mnName="noType"
-mnQty="0"
-
-
 echo -e "${GREEN}Masternode Administrator Menu - BETA ${NC}"
 echo -e "${CYAN} --- ${NC}"
-echo -e "${GREEN} currently supported coins:${NC}"
+echo -e "${CYAN} supported coins:${NC}"
 echo -e "${CYAN} dextro, dinero, worx, ${NC}"
 echo -e "${CYAN} --- ${NC}"
-echo "*** this currently only prints and does not perform any actions ***"
+echo "*** this currently only prints; does not perform any actions ***"
 echo ""
 echo ""
 echo "Enter a coin name (all lowercase): "
 echo "dextro, dinero, worx, etc... "
 read -e -p " : " coinName
 
-PS3='Please choose a task (press enter to view menu) : '
+PS3="Please choose a task number (press enter to view menu) : "
 options=("start" "stop" "getinfo" "edit config" "mnsync status" "masternode status" "install" "change coin" "list nodes" "Quit")
 select opt in "${options[@]}"
 do
@@ -74,7 +72,8 @@ do
         echo "";
             ;;
          "list nodes")
-        echo this will list all nodes in /root/."$coinName$mnIteration"/"$coinName" - like below:
+        sudo ls -lah /root/ | grep "$coinName" | awk '{print $9}'
+	echo this will list all nodes in /root/."$coinName$mnIteration"/"$coinName" - like below:
 	echo /root/."$coinName"/
 	echo /root/."$coinName"2/
 	echo /root/."$coinName"3/
