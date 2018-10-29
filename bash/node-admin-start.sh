@@ -24,7 +24,7 @@ echo "dextro, dinero, worx, etc... "
 read -e -p " : " coinName
 
 PS3='Please choose a task (press enter to view menu) : '
-options=("start" "stop" "getinfo" "edit config" "mnsync status" "masternode status" "install" "change coin" "Quit")
+options=("start" "stop" "getinfo" "edit config" "mnsync status" "masternode status" "install" "change coin" "list nodes" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -73,7 +73,18 @@ do
         echo TODO - install /root/."$coinName$mnIteration"/"$coinName"
         echo "";
             ;;
-         "change coin")
+         "list nodes")
+        read -e -p "Which $coinName number? : " mnIteration
+        echo this will list all nodes in /root/."$coinName$mnIteration"/"$coinName" - like below:
+	echo /root/."$coinName"/
+	echo /root/."$coinName"2/
+	echo /root/."$coinName"3/
+	echo /root/."$coinName"4/
+	echo etc ...
+        echo "";
+            ;;
+
+	 "change coin")
         echo you are currently managing "$coinName".
 	echo select a coin to manage:
 	read -e -p "dextro, dinero, worx, monero, etc... " coinName
