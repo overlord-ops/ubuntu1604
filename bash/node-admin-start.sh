@@ -1,6 +1,6 @@
 #!/bin/bash
 #node-admin-start.sh
-# v0.0.4
+# v0.1.1
 
 GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
@@ -9,12 +9,12 @@ NC='\e[0m'
 
 clear
 
-echo -e "${GREEN}Masternode Administrator Menu - BETA ${NC}"
+echo -e "${GREEN}Masternode Administrator Menu ${NC}"
 echo -e "${CYAN} --- ${NC}"
 echo -e "${CYAN} supported coins:${NC}"
 echo -e "${CYAN} dextro, dinero, worx, ${NC}"
 echo -e "${CYAN} --- ${NC}"
-echo "*** this currently only prints; does not perform any actions ***"
+echo "*** this is no longer a beta - commands will attempt to execute ***"
 echo ""
 echo ""
 echo "Enter a coin name (all lowercase): "
@@ -30,39 +30,39 @@ do
          #systemctl start $coinName
          read -e -p "Which $coinName number? : " mnIteration
 	 echo -e "${YELLOW}starting node $coinName$mnIteration ${NC}";
-	 echo "$coinName"d -daemon -conf=/root/."$coinName$mnIteration"/"$coinName".conf -datadir=/root/."$coinName$mnIteration"
+	 sudo "$coinName"d -daemon -datadir=/root/."$coinName$mnIteration"
         echo "";
             ;;
         "stop")
          #systemctl stop $coinName
 	 read -e -p "Which $coinName number? : " mnIteration
          echo -e "${YELLOW}stopping $coinName$mnIteration node ${NC}";
-         echo "$coinName"-cli -conf=/root/."$coinName$mnIteration"/"$coinName".conf -datadir=/root/."$coinName$mnIteration" stop
+         sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" stop
         echo "";
             ;;
         "getinfo")
         
 	read -e -p "Which $coinName number? : " mnIteration
 	echo using: "$coinName"-cli -conf=/root/."$coinName$mnIteration"/"$coinName".conf -datadir=/root/."$coinName$mnIteration" getinfo
-        echo "$coinName"-cli -conf=/root/."$coinName$mnIteration"/"$coinName".conf -datadir=/root/."$coinName$mnIteration" getinfo
+        sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" getinfo
 	echo "";
             ;;
          "edit config")
 	read -e -p "Which $coinName number? : " mnIteration
-        echo nano /root/."$coinName$mnIteration"/"$coinName".conf
+        sudo nano /root/."$coinName$mnIteration"/"$coinName".conf
         echo "";
             ;;
          "mnsync status")
 	read -e -p "Which $coinName number? : " mnIteration
         echo -e "${YELLOW}$coinName$mnIteration mnsync status: ${NC}";
-        echo "$coinName"-cli -conf=/root/."$coinName$mnIteration"/"$coinName".conf -datadir=/root/."$coinName$mnIteration" mnsync status
+        sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" mnsync status
         echo "";
         echo "";
             ;;
         "masternode status")
 	read -e -p "Which $coinName number? : " mnIteration
         echo -e "${YELLOW} $coinName$mnIteration masternode status : ${NC}";
-        echo "$coinName"-cli -conf=/root/."$coinName$mnIteration"/"$coinName".conf -datadir=/root/."$coinName$mnIteration" masternode status
+        sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" masternode status
     	echo "";
     	echo "";
             ;;
@@ -73,12 +73,6 @@ do
             ;;
          "list nodes")
         sudo ls -lah /root/ | grep "$coinName" | awk '{print $9}'
-	echo this will list all nodes in /root/."$coinName$mnIteration"/"$coinName" - like below:
-	echo /root/."$coinName"/
-	echo /root/."$coinName"2/
-	echo /root/."$coinName"3/
-	echo /root/."$coinName"4/
-	echo etc ...
         echo "";
             ;;
 
@@ -88,7 +82,6 @@ do
 	read -e -p "dextro, dinero, worx, monero, etc... " coinName
         echo "";
             ;;
-
 
         "Quit")
             break
