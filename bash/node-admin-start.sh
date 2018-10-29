@@ -74,7 +74,6 @@ do
         echo "";
             ;;
          "list nodes")
-        read -e -p "Which $coinName number? : " mnIteration
         echo this will list all nodes in /root/."$coinName$mnIteration"/"$coinName" - like below:
 	echo /root/."$coinName"/
 	echo /root/."$coinName"2/
