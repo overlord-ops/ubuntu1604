@@ -40,30 +40,66 @@ do
          sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" stop
         echo "";
             ;;
-        "getinfo")
-        
+        "getinfo") 
 	read -e -p "Which $coinName number? : " mnIteration
-	echo using: "$coinName"-cli -datadir=/root/."$coinName$mnIteration" getinfo
-        sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" getinfo
-	echo "";
-            ;;
+  	  case "$coinName" in
+	    *worx*)
+             read -e -p "Which worx user? (worx, worx2, worx3, etc) : " wrxUser
+             echo using "$wrxUser"
+             sudo su -c "$coinName-cli -datadir=/root/.$coinName$mnIteration getinfo" "$wrxUser"
+		;;
+	  *)
+	  sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" getinfo
+		;;
+	    esac
+	    ;;    
          "edit config")
 	read -e -p "Which $coinName number? : " mnIteration
-        sudo nano /root/."$coinName$mnIteration"/"$coinName".conf
+
+          case "$coinName" in
+            *worx*)
+             read -e -p "Which worx user? (worx, worx2, worx3, etc) : " wrxUser
+             echo using "$wrxUser"
+             sudo su -c "nano /root/."$coinName$mnIteration"/"$coinName".conf" "$wrxUser"
+                ;;
+          *)
+          sudo nano /root/."$coinName$mnIteration"/"$coinName".conf
+                ;;
+            esac
         echo "";
             ;;
          "mnsync status")
 	read -e -p "Which $coinName number? : " mnIteration
-        echo -e "${YELLOW}$coinName$mnIteration mnsync status: ${NC}";
-        sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" mnsync status
-        echo "";
+
+          case "$coinName" in
+            *worx*)
+             read -e -p "Which worx user? (worx, worx2, worx3, etc) : " wrxUser
+             echo using "$wrxUser"
+	     echo -e "${YELLOW}$coinName$mnIteration mnsync status: ${NC}";
+             sudo su -c ""$coinName"-cli -datadir=/root/.$coinName$mnIteration mnsync status" "$wrxUser"
+                ;;
+          *)
+          echo -e "${YELLOW}$coinName$mnIteration mnsync status: ${NC}";
+          sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" mnsync status
+                ;;
+            esac
         echo "";
             ;;
         "masternode status")
 	read -e -p "Which $coinName number? : " mnIteration
-        echo -e "${YELLOW} $coinName$mnIteration masternode status : ${NC}";
-        sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" masternode status
-    	echo "";
+
+          case "$coinName" in
+            *worx*)
+             read -e -p "Which worx user? (worx, worx2, worx3, etc) : " wrxUser
+             echo using "$wrxUser"
+             echo -e "${YELLOW}$coinName$mnIteration masternode status : ${NC}";
+             sudo su -c ""$coinName"-cli -datadir=/root/.$coinName$mnIteration masternode status" "$wrxUser"
+                ;;
+          *)
+          echo -e "${YELLOW}$coinName$mnIteration masternode status : ${NC}";
+          sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" masternode status        
+                ;;
+            esac
     	echo "";
             ;;
          "install")
