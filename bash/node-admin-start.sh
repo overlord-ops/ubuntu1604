@@ -45,7 +45,7 @@ do
   	  case "$coinName" in
 	    *worx*)
              wrxUser="$coinName$mnIteration"
-             echo using "${GREEN}$wrxUser${NC}" as the worx node user
+             echo -e using "${GREEN}$wrxUser${NC}" as the worx node user
              sudo su -c "$coinName-cli -datadir=/root/.$coinName$mnIteration getinfo" "$wrxUser"
 		;;
 	  *)
@@ -59,7 +59,7 @@ do
           case "$coinName" in
             *worx*)
              wrxUser="$coinName$mnIteration"
-             echo using "${GREEN}$wrxUser${NC}" as the worx node user
+             echo -e using "${GREEN}$wrxUser${NC}" as the worx node user
              sudo su -c "nano /root/."$coinName$mnIteration"/"$coinName".conf" "$wrxUser"
                 ;;
           *)
@@ -74,7 +74,7 @@ do
           case "$coinName" in
             *worx*)
              wrxUser="$coinName$mnIteration"
-             echo using "${GREEN}$wrxUser${NC}" as the worx node user
+             echo -e using "${GREEN}$wrxUser${NC}" as the worx node user
 	     echo ""
 	     echo -e "${YELLOW}$coinName$mnIteration mnsync status: ${NC}";
              sudo su -c ""$coinName"-cli -datadir=/root/.$coinName$mnIteration mnsync status" "$wrxUser"
@@ -92,7 +92,7 @@ do
           case "$coinName" in
             *worx*)
              wrxUser="$coinName$mnIteration"
-             echo using "${GREEN}$wrxUser${NC}" as the worx node user
+             echo -e using "${GREEN}$wrxUser${NC}" as the worx node user
 	     echo ""
              echo -e "${YELLOW}$coinName$mnIteration masternode status : ${NC}";
              sudo su -c ""$coinName"-cli -datadir=/root/.$coinName$mnIteration masternode status" "$wrxUser"
