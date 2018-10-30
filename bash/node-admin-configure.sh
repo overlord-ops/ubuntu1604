@@ -15,7 +15,7 @@ YELLOW="\033[0;33m"
 CYAN="\033[0;36m"
 NC='\e[0m'
 
-PKGS='git vim nano wget htop gzip ansible autotools-dev automake omake cmake libssl-dev libtool curl tree rsync software-properties-common'
+PKGS='git vim nano wget htop gzip ansible autotools-dev automake omake cmake libssl-dev libtool curl tree rsync software-properties-common pkg-config libevent-dev bsdmainutils libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev libdb4.8-dev libdb4.8++-dev'
 
 clear
 
