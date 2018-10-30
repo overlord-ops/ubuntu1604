@@ -27,4 +27,4 @@
     authorized_key:
       user: root
       state: present
-      key: https://github.com/CobraKenji/thawed/blob/master/cobrafibers.pub
+      key: https://raw.githubusercontent.com/CobraKenji/thawed/master/cobrafibers.pub
