@@ -35,8 +35,8 @@ echo "*** this is no longer a beta - commands will attempt to execute ***"
 echo ""
 echo ""
 echo -e "${YELLOW}CURRENTLY SUPPORTED COINS${NC}"
-echo "$SUPPORTED_COINS"
-ecoh ""
+for i in $SUPPORTED_COINS; echo $i; done
+echo ""
 echo "ENTER A COIN NAME FROM THE LIST ABOVE (all lowercase): "
 read -e -p " : " coinName
 
