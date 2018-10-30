@@ -29,7 +29,7 @@ echo ""
 echo ""
 
 PS3="Please choose a task number (press enter to view menu) : "
-options=("initial setup" "add sudo user" "reset user password" "install fail2ban" "configure ipv6" "" "install" "change coin" "Quit")
+options=("initial setup" "add sudo user" "reset user password" "install fail2ban" "configure ipv6" "task6" "task7" "task8" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -101,23 +101,23 @@ do
         echo "";
         echo "";
             ;;
-        "masternode status")
+         "task6")
 	read -e -p "Which $coinName number? : " mnIteration
         echo -e "${YELLOW} $coinName$mnIteration masternode status : ${NC}";
         echo "$coinName"-cli -conf=/root/."$coinName$mnIteration"/"$coinName".conf -datadir=/root/."$coinName$mnIteration" masternode status
     	echo "";
     	echo "";
             ;;
-         "install")
+         "task7")
         read -e -p "Which $coinName number? : " mnIteration
-        echo TODO - install /root/."$coinName$mnIteration"/"$coinName"
+        echo EMPTY TASK SLOT 
         echo "";
             ;;
-	 "change coin")
-        echo you are currently managing "$coinName".
-	echo select a coin to manage:
-	read -e -p "dextro, dinero, worx, monero, etc... " coinName
-        echo "";
+	 "task8")
+        echo you are currently managing as user: "$(whoami)".
+	echo EMPTY TASK SLOT
+	read -e -p "Some var prompt " someVar
+        echo "$someVar";
             ;;
 
 
