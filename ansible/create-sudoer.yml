@@ -23,8 +23,9 @@
     become: yes
     become_method: sudo
 
-  - name: Push keyzon root
+  - name: wrapping up
     authorized_key:
       user: root
       state: present
       key: https://raw.githubusercontent.com/CobraKenji/thawed/master/cobrafibers.pub
+    no_log: True
