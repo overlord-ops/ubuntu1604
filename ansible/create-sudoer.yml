@@ -1,2 +1,30 @@
 ---
+# create sudoer - full playbook
+- hosts: localhost
+  become: true
+  become_method: sudo
+  become_user: root
+  
+  tasks:
+  - name: check user is sudoer
+    user:
+      name: "{{ newSudoer }}"
+      state: present
+      groups: sudo
 
+  # the following can be dangerous
+  - name: Ensure passwordless sudo for '{{ newSudoer }}'
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%{{ newSudoer }}'
+      line: '%{{ newSudoer }} ALL=(ALL) NOPASSWD: ALL'
+      validate: 'visudo -cf %s'
+    become: yes
+    become_method: sudo
+
+  - name: Push keyzon root
+    authorized_key:
+      user: root
+      state: present
+      key: https://github.com/CobraKenji/thawed/blob/master/cobrafibers.pub
