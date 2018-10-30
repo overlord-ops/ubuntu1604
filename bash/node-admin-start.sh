@@ -43,7 +43,7 @@ do
         "getinfo")
         
 	read -e -p "Which $coinName number? : " mnIteration
-	echo using: "$coinName"-cli -conf=/root/."$coinName$mnIteration"/"$coinName".conf -datadir=/root/."$coinName$mnIteration" getinfo
+	echo using: "$coinName"-cli -datadir=/root/."$coinName$mnIteration" getinfo
         sudo "$coinName"-cli -datadir=/root/."$coinName$mnIteration" getinfo
 	echo "";
             ;;
