@@ -10,7 +10,6 @@
     user:
       name: "{{ newSudoer }}"
       state: present
-      password: "{{ V3pzenI0c2E1bDMzIQ== | b64decode }}"
       groups: sudo
       
    - name: reset pass
