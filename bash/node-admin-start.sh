@@ -62,7 +62,7 @@ do
         "getinfo") 
 	read -e -p "Which $coinName number? : " mnIteration
   	  case "$coinName" in
-	    *worx*)
+	    *worx[2-*])
              wrxUser="$coinName$mnIteration"
              echo -e using "${GREEN}$wrxUser${NC}" as the worx node user
              sudo su -c "$coinName-cli -datadir=/root/.$coinName$mnIteration getinfo" "$wrxUser"
